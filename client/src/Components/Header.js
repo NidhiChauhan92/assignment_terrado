@@ -12,9 +12,9 @@ export default function Header() {
         <Container>
           <Navbar.Brand href="#home">Terrado</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/login">Login</Nav.Link>
-            <Nav.Link href="signup">Signup</Nav.Link>
+            <Nav.Link href="/signup">Signup</Nav.Link>
           </Nav>
         </Container>
       </Navbar>

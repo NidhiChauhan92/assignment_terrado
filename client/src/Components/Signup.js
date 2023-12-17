@@ -1,16 +1,42 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React,{useState}from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Signup() {
+    const [crediantials,setcrediantials] = useState({name:"",email:"",password:"",geolocation:""})
 
-function handleSubmit(){
-    
-}
+
+
+    const handleSubmit = async(e) =>{
+        e.preventDefault();
+        const response = await fetch("http://localhost:5000/api/createuser",{
+            method:'POST',
+            headers : {
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({name:crediantials.name,
+                                email:crediantials.email,
+                                password:crediantials.password,
+                                location:crediantials.geolocation})
+        });
+        const json = await response.json()
+        console.log(json);
+
+        if(!json.success){
+            alert("Enter Valid Credentials")
+        }else{
+            alert("Register Successfully")
+        }
+
+    }
+
+    const onChange = (event) =>{
+        setcrediantials({...crediantials,[event.target.name]:event.target.value})
+    }
 
 
   return (
     <>
-      <div className='container'> 
+    <div className='container'> 
     <form onSubmit={handleSubmit}>
     <div className="mb-3">
         <label htmlFor="name" className="form-label">Name</label>
@@ -35,6 +61,7 @@ function handleSubmit(){
     </form>
 
     </div>
+
     </>
-  );
+  )
 }
